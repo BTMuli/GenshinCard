@@ -15,8 +15,13 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint --cache --fix",
-    "*.{yml,js,cjs,json,vue,ts}": "prettier --write"
+    "*.{js,cjs,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{yml,json}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",

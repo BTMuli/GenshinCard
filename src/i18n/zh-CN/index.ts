@@ -5,6 +5,8 @@
  */
 
 export default {
+  bgColorSelect: "背景颜色选择",
+  fgColorSelect: "前景颜色选择",
   failed: "操作失败",
   success: "操作成功",
 };

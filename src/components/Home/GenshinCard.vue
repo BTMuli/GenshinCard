@@ -6,7 +6,7 @@
     </div>
     <div class="card-select">
       <div class="card-select-line">
-        <div class="csl-title">背景色选择</div>
+        <div class="csl-title">{{ $t("bgColorSelect") }}</div>
         <q-radio
           v-for="key in bgSelectList"
           :key="key"
@@ -18,7 +18,7 @@
         />
       </div>
       <div class="card-select-line">
-        <div class="csl-title">前景色选择</div>
+        <div class="csl-title">{{ $t("fgColorSelect") }}</div>
         <q-radio
           v-for="key in fgSelectList"
           :key="key"

@@ -5,6 +5,7 @@
  */
 
 export default {
+  changeLang: "Switch to Chinese",
   bgColorSelect: "Select the bgColor",
   fgColorSelect: "Select the fgColor",
   failed: "Action failed",

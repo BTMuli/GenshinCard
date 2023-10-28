@@ -21,12 +21,26 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <q-fab icon="keyboard_arrow_up" direction="up" color="accent" vertical-actions-align="right">
+        <q-fab-action
+          :label="$t('changeLang')"
+          label-position="left"
+          @click="changeLang"
+          color="primary"
+          icon="language"
+        />
+      </q-fab>
+    </q-page-sticky>
   </q-layout>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import EssentialLink, { EssentialLinkProps } from "components/EssentialLink.vue";
+import { useI18n } from "vue-i18n";
+
+const { locale } = useI18n();
 
 const essentialLinks: EssentialLinkProps[] = [
   {
@@ -74,6 +88,20 @@ const essentialLinks: EssentialLinkProps[] = [
 ];
 
 const leftDrawerOpen = ref(false);
+const footerFab = ref(true);
+
+function onClick() {
+  footerFab.value = true;
+}
+
+function changeLang() {
+  if (locale.value === "en") {
+    locale.value = "zh";
+  } else {
+    locale.value = "en";
+  }
+  localStorage.setItem("lang", locale.value);
+}
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;

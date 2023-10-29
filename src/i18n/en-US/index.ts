@@ -4,10 +4,11 @@
  * @since v0.1.0-alpha
  */
 
+import genshin from "./genshin";
+
 export default {
   changeLang: "Switch to Chinese",
-  bgColorSelect: "Select the bgColor",
-  fgColorSelect: "Select the fgColor",
   failed: "Action failed",
   success: "Action was successful",
+  ...genshin,
 };

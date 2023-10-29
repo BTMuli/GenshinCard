@@ -1,9 +1,9 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <genshin-card />
+    <app-home />
   </q-page>
 </template>
 
 <script setup lang="ts">
-import GenshinCard from "components/Home/GenshinCard.vue";
+import AppHome from "components/AppHome.vue";
 </script>

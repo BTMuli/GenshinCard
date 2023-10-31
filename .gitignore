@@ -4,3 +4,4 @@
 node_modules
 # Quasar build files
 .quasar
+dist

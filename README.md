@@ -1,43 +1,22 @@
-# Genshin Card (genshincard)
+---
+Author: 目棃
+Description: 说明文档
+Date: 2023-10-31
+Update: 2023-10-31
+---
+
+> 本文档 [`Frontmatter`](https://github.com/BTMuli/MuCli#Frontmatter) 由 [MuCli](https://github.com/BTMuli/Mucli) 自动生成于 `2023-10-31 16:21:13`
+>
+> 更新于 `2023-10-31 16:21:13`
+
+# Genshin Card
 
 Genshin Item Description Map Generator
 
-## Install the dependencies
+# See
 
-```bash
-yarn
-# or
-npm install
-```
+[`GenshinCardDemo`](https://card.btmuli.ink)
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+# LICENSE
 
-```bash
-quasar dev
-```
-
-### Lint the files
-
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-### Format the files
-
-```bash
-yarn format
-# or
-npm run format
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+[GPL v3](./LICENSE)

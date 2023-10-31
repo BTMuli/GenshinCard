@@ -24,8 +24,8 @@
       </div>
     </div>
     <div class="card-select">
+      <div class="csl-title">{{ $t("gcs-select") }}</div>
       <div class="card-select-line">
-        <div class="csl-title">{{ $t("gcs-select") }}</div>
         <q-radio
           v-for="select in GenshinConfig"
           :key="select.label"
@@ -36,6 +36,13 @@
           :label="select.label"
         />
       </div>
+      <div class="csl-title">{{ $t("gcs-input") }}{{ $t("gcs-title") }}</div>
+      <q-input v-model="inputVal.title" />
+      <div class="csl-title">{{ $t("gcs-input") }}{{ $t("gcs-type") }}</div>
+      <q-input v-model="inputVal.type" />
+      <div class="csl-title">{{ $t("gcs-input") }}{{ $t("gcs-desc") }}</div>
+      <q-input v-model="inputVal.desc" />
+      <q-btn :label="$t('gcs-reset')" color="primary" @click="resetVal" />
     </div>
   </div>
 </template>
@@ -63,19 +70,39 @@ const inputVal = ref({
   type: undefined,
   desc: undefined,
 });
+
+// reset val
+function resetVal() {
+  cardVal.value = "NONE";
+  inputVal.value = {
+    title: undefined,
+    type: undefined,
+    desc: undefined,
+  };
+}
 </script>
 
 <style lang="css" scoped src="../assets/fonts/index.css"></style>
 <style lang="css" scoped>
 .card-box {
+  width: 100%;
+  padding: 2% 5%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  position: relative;
+  column-gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 1rem;
+  }
 }
 
 .card-container {
   width: 450px;
+  max-width: 100%;
   position: relative;
 }
 
@@ -153,12 +180,15 @@ const inputVal = ref({
 .card-select {
   display: flex;
   flex-direction: column;
+  margin-bottom: auto;
+  max-width: 100%;
+  row-gap: 1em;
 }
 
 .card-select-line {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .csl-title {

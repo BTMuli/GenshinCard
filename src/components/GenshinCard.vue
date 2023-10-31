@@ -42,7 +42,7 @@
       <div class="csl-title">{{ $t("gcs-input") }}{{ $t("gcs-type") }}</div>
       <q-input v-model="inputVal.type" />
       <div class="csl-title">{{ $t("gcs-input") }}{{ $t("gcs-desc") }}</div>
-      <q-input v-model="inputVal.desc" />
+      <q-input v-model="inputVal.desc" type="textarea" />
       <q-btn :label="$t('gcs-upload')" color="primary" @click="uploadIcon" />
       <q-btn :label="$t('gcs-reset')" color="primary" @click="resetVal" />
       <q-btn :label="$t('gcs-copy')" color="primary" @click="copyImg" />
@@ -261,6 +261,7 @@ async function downloadImg() {
   aspect-ratio: 6 / 5;
   position: relative;
   background-color: #e8e4d8;
+  white-space: pre-wrap;
   padding: 5%;
 }
 

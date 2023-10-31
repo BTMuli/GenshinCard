@@ -11,4 +11,5 @@ export default {
   failed: "操作失败",
   success: "操作成功",
   ...genshin,
+  essentialLinks: "相关链接",
 };

@@ -5,5 +5,8 @@
  */
 
 export default {
-  "gcs-title": "Select the star level of item",
+  "gcs-select": "Select the star level of item",
+  "gcs-title": "Item name",
+  "gcs-type": "Item type",
+  "gcs-desc": "Item description",
 };

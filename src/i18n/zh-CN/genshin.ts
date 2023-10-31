@@ -5,5 +5,8 @@
  */
 
 export default {
-  "gcs-title": "选择物品的星级",
+  "gcs-select": "选择物品的星级",
+  "gcs-title": "物品名称",
+  "gcs-type": "物品类型",
+  "gcs-desc": "物品描述",
 };

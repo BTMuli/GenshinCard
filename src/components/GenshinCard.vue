@@ -119,7 +119,7 @@ function uploadIcon() {
 async function copyImg() {
   shareRef.value = document.querySelector(".card-container") as HTMLElement;
   const canvas = await html2canvas(shareRef.value, {
-    backgroundColor: null,
+    backgroundColor: "#ffffff",
     scale: 2,
   });
   const buffer = new Uint8Array(

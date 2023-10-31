@@ -1,6 +1,6 @@
 <template>
   <div class="card-box">
-    <div class="card-container">
+    <div class="card-container" :ref="shareRef">
       <div
         class="ccn-top"
         :style="{
@@ -11,7 +11,8 @@
       </div>
       <div class="ccn-mid">
         <img :src="getCardBg" alt="bg" id="card-bg" />
-        <img src="/genshin/sign.png" alt="fg" id="card-sign" />
+        <img src="/genshin/sign.png" alt="sign" id="card-sign" />
+        <img :src="uploadSrc" v-if="uploadSrc" alt="item" id="card-item" />
         <div id="item-type">
           {{ inputVal.type ?? $t("gcs-type") }}
         </div>
@@ -42,7 +43,10 @@
       <q-input v-model="inputVal.type" />
       <div class="csl-title">{{ $t("gcs-input") }}{{ $t("gcs-desc") }}</div>
       <q-input v-model="inputVal.desc" />
+      <q-btn :label="$t('gcs-upload')" color="primary" @click="uploadIcon" />
       <q-btn :label="$t('gcs-reset')" color="primary" @click="resetVal" />
+      <q-btn :label="$t('gcs-copy')" color="primary" @click="copyImg" />
+      <q-btn :label="$t('gcs-download')" color="primary" @click="downloadImg" />
     </div>
   </div>
 </template>
@@ -50,8 +54,11 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import GenshinConfig from "src/plugins/Genshin/config";
+import html2canvas from "html2canvas";
 
 const cardVal = ref<string>("NONE");
+const uploadSrc = ref<string>();
+const shareRef = ref<HTMLElement>();
 
 const getTopBgColor = computed(() => {
   return GenshinConfig.find((item) => item.value === cardVal.value)?.color || "#6A727D";
@@ -79,6 +86,77 @@ function resetVal() {
     type: undefined,
     desc: undefined,
   };
+}
+
+// upload icon
+function uploadIcon() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/*";
+  input.onchange = (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.src = (e.target as FileReader).result as string;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+          canvas.width = 512;
+          canvas.height = 512;
+          ctx?.drawImage(img, 0, 0, 512, 512);
+          uploadSrc.value = canvas.toDataURL("image/png");
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  input.click();
+}
+
+// copy img to clipboard
+async function copyImg() {
+  shareRef.value = document.querySelector(".card-container") as HTMLElement;
+  const canvas = await html2canvas(shareRef.value, {
+    backgroundColor: null,
+    scale: 2,
+  });
+  const buffer = new Uint8Array(
+    atob(canvas.toDataURL("image/png").split(",")[1])
+      .split("")
+      .map((c) => c.charCodeAt(0)),
+  );
+  const blob = new Blob([buffer], { type: "image/png" });
+  const url = window.URL.createObjectURL(blob);
+  await navigator.clipboard.write([
+    new ClipboardItem({
+      [blob.type]: blob,
+    }),
+  ]);
+  alert("已复制到剪贴板");
+  URL.revokeObjectURL(url);
+}
+
+// download img
+async function downloadImg() {
+  shareRef.value = document.querySelector(".card-container") as HTMLElement;
+  const canvas = await html2canvas(shareRef.value, {
+    backgroundColor: null,
+    scale: 2,
+  });
+  const buffer = new Uint8Array(
+    atob(canvas.toDataURL("image/png").split(",")[1])
+      .split("")
+      .map((c) => c.charCodeAt(0)),
+  );
+  const blob = new Blob([buffer], { type: "image/png" });
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "genshin-card.png";
+  link.click();
+  URL.revokeObjectURL(url);
 }
 </script>
 
@@ -134,11 +212,20 @@ function resetVal() {
 
 #card-sign {
   aspect-ratio: 1 / 1;
-  height: 80%;
-  top: 10%;
-  right: 10%;
+  height: 100%;
+  top: 0;
+  right: 0;
   position: absolute;
   z-index: 2;
+}
+
+#card-item {
+  aspect-ratio: 1 / 1;
+  height: 50%;
+  top: 25%;
+  right: 10%;
+  position: absolute;
+  z-index: 3;
 }
 
 #item-type {

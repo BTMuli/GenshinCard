@@ -8,45 +8,34 @@ import type { SelectItem } from "./interface";
 
 const GenshinConfig: SelectItem[] = [
   {
-    title: "gss-bgColor",
-    type: "bgColor",
-    list: [
-      {
-        label: "Star1",
-        value: "WHITE",
-      },
-      {
-        label: "Star2",
-        value: "GREEN",
-      },
-      {
-        label: "Star3",
-        value: "BLUE",
-      },
-      {
-        label: "Star4",
-        value: "PURPLE",
-      },
-      {
-        label: "Star5",
-        value: "ORANGE",
-      },
-      {
-        label: "Star105",
-        value: "RED",
-      },
-    ],
+    label: "Star1",
+    value: "WHITE",
+    star: 1,
   },
   {
-    title: "gss-fgColor",
-    type: "fgColor",
-    list: [
-      {
-        label: "Item",
-        value: "ITEM",
-      },
-    ],
+    label: "Star2",
+    value: "GREEN",
+    star: 2,
+  },
+  {
+    label: "Star3",
+    value: "BLUE",
+    star: 3,
+  },
+  {
+    label: "Star4",
+    value: "PURPLE",
+    star: 4,
+  },
+  {
+    label: "Star5",
+    value: "ORANGE",
+    star: 5,
+  },
+  {
+    label: "Star105",
+    value: "RED",
+    star: 5,
   },
 ];
-
 export default GenshinConfig;

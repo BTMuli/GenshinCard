@@ -5,6 +5,5 @@
  */
 
 export default {
-  "gss-bgColor": "选择背景色",
-  "gss-fgColor": "选择前景色",
+  "gcs-title": "选择物品的星级",
 };

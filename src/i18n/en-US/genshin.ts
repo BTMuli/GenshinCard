@@ -5,6 +5,5 @@
  */
 
 export default {
-  "gss-bgColor": "Select the bgColor",
-  "gss-fgColor": "Select the fgColor",
+  "gcs-title": "Select the star level of item",
 };

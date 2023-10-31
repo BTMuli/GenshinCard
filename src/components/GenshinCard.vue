@@ -69,7 +69,7 @@ const getStarNum = computed(() => {
 });
 
 const getCardBg = computed(() => {
-  return `../src/assets/genshin/BGC_${cardVal.value}.png`;
+  return `/genshin/BGC_${cardVal.value}.png`;
 });
 
 const inputVal = ref({

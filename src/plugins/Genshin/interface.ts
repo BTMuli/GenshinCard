@@ -12,10 +12,12 @@
  * @property {string} label 显示的名称
  * @property {string} value 选择的值
  * @property {number} star 星级
+ * @property {string} color 颜色 - 用于顶部条
  * @return SelectItem
  */
 export interface SelectItem {
   label: string;
   value: string;
   star: number;
+  color: string;
 }

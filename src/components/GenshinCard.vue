@@ -1,7 +1,12 @@
 <template>
   <div class="card-box">
     <div class="card-container">
-      <div class="ccn-top">这里放顶部花纹</div>
+      <div
+        class="ccn-top"
+        :style="{
+          backgroundColor: getTopBgColor,
+        }"
+      ></div>
       <div class="ccn-mid">
         <img :src="getCardBg" alt="bg" id="card-bg" />
         <img src="/genshin/sign.png" alt="fg" id="card-sign" />
@@ -34,6 +39,10 @@ import GenshinConfig from "src/plugins/Genshin/config";
 
 const cardVal = ref<string>("NONE");
 
+const getTopBgColor = computed(() => {
+  return GenshinConfig.find((item) => item.value === cardVal.value)?.color || "#6A727D";
+});
+
 const getStarNum = computed(() => {
   return GenshinConfig.find((item) => item.value === cardVal.value)?.star || 0;
 });
@@ -53,7 +62,7 @@ const getCardBg = computed(() => {
   width: 100%;
   position: relative;
   aspect-ratio: 12 / 1;
-  background-color: rgba(175, 107, 60, 0.76);
+  background-color: #e0a64f;
 }
 
 .ccn-mid {
